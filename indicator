@@ -1,6 +1,5 @@
 #!/bin/bash
 PIPE=$(mktemp -u --tmpdir ${0##*/}.XXXXXXXX)
-PIPE2=$(mktemp -u --tmpdir ${0##*/}.XXXXXXXX)
 
 
 function on_click () 
