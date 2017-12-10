@@ -5,3 +5,4 @@ It display a yad notificaciton with the status of the CapsLock, NumberLock and S
 Useful for those laptops without leds for these keys.
 It can be assigned to a hotkey. 
 
+![Sample execution](/images/example.png)
