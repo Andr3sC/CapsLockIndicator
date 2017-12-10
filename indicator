@@ -1,0 +1,20 @@
+#!/bin/bash
+PIPE=$(mktemp -u --tmpdir ${0##*/}.XXXXXXXX)
+PIPE2=$(mktemp -u --tmpdir ${0##*/}.XXXXXXXX)
+
+
+function on_click () 
+{
+    #echo "pulsado [$*]"
+    kill `cat $1`
+}
+
+export -f on_click
+
+
+ESTADO=`xset -q | grep Caps | sed -e 's!off!|FALSE|!g;s!on!|TRUE|!g' | nawk -F'|' '{printf("%s  %s  %s\n",$2,$4,$6)}'`
+yad --form --field=" !gtk-ok!:1":btn --field="Caps Lock":CHK --field="Num Lock":CHK --field "Scroll Lock":CHK --columns 4 --undecorated --no-buttons --timeout=10 --timeout-indicator=top "bash -c 'on_click $PIPE'" $ESTADO &
+echo $! > $PIPE
+sleep 11 
+rm $PIPE
+
